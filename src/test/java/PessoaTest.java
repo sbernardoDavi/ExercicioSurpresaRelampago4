@@ -5,20 +5,66 @@ import static org.junit.jupiter.api.Assertions.*;
 class PessoaTest {
 
     @Test
-    void deveRetornarNomePessoa(){
+    void deveRetornarNomePessoaConstrutor(){
         Pessoa pessoa = new Pessoa("Davi");
 
-        assertNotNull(pessoa.getNome());
+        assertEquals("Davi",pessoa.getNome());
     }
 
     @Test
-    void naoDeveRetornarExceçãoNomePessoaNulo(){
+    void DeveRetornarExceçaoNomePessoaConstrutorNulo(){
         try {
-            Pessoa pessoa = new Pessoa(null);
+            Pessoa pessoa = new Pessoa("");
             fail();
         }
         catch(NullPointerException e) {
-            assertNotNull("Nome obrigatório", e.getMessage());
+            assertEquals("Nome obrigatório", e.getMessage());
         }
     }
+
+
+    @Test
+    void DeveRetornarExceçaoNomePessoaNulo(){
+        try {
+            Pessoa pessoa = new Pessoa("Davi");
+            pessoa.setNome(null);
+            fail();
+        }
+        catch(NullPointerException e) {
+            assertEquals("Nome obrigatório", e.getMessage());
+        }
+    }
+
+    @Test
+    void deveRetornarNomePessoaSet(){
+        Pessoa pessoa = new Pessoa("Davi");
+        pessoa.setNome("Joao");
+
+        assertEquals("Joao", pessoa.getNome());
+    }
+
+    @Test
+    void DeveRetornarExceçaoNomePessoaVazio(){
+        try {
+            Pessoa pessoa = new Pessoa("");
+            fail();
+        }
+        catch(NullPointerException e) {
+            assertEquals("Nome obrigatório", e.getMessage());
+        }
+    }
+
+    @Test
+    void DeveRetornarExceçãoSetNomePessoaVazio(){
+        try {
+            Pessoa pessoa = new Pessoa("Davi");
+            pessoa.setNome(" ");
+            fail();
+        }
+        catch(NullPointerException e) {
+            assertEquals("Nome obrigatório", e.getMessage());
+        }
+    }
+
+
 }

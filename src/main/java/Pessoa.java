@@ -3,7 +3,7 @@ public class Pessoa {
     private String nome;
 
     public Pessoa(String nome) {
-        if (nome == null) {
+        if ((nome == null) || (nome.trim().equals(""))){
             throw new NullPointerException("Nome obrigatório");
         }
         this.nome = nome;
@@ -15,6 +15,9 @@ public class Pessoa {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if ((nome == null) || (nome.trim().equals(""))){
+           throw new NullPointerException("Nome obrigatório");
+       }
+       this.nome = nome;
     }
 }
